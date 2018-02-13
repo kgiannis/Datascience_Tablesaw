@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<title>Index</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href='/webjars/jquery-ui/1.12.1/jquery-ui.min.css' type="text/css" />
+	<link rel='stylesheet' href='/webjars/bootstrap/4.0.0-alpha.6-1/css/bootstrap.min.css' />
+	<link rel='stylesheet' href='/webjars/datatables/1.10.15/css/jquery.dataTables.css' />
+	<link rel='stylesheet' href='/webjars/select2/4.0.3/dist/css/select2.min.css' />
+	<link rel='stylesheet' href='/webjars/tether/1.4.0/css/tether.min.css' />
+	
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/webjars/datatables/1.10.15/js/jquery.dataTables.js"></script>
+	<script src="/webjars/select2/4.0.3/dist/js/select2.full.min.js"></script>
+	<script src="/webjars/tether/1.4.0/js/tether.min.js"></script>
+	<script src="/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div th:replace="template :: header">
+		<!-- Inherited from template -->
+	</div>
+
+
+
+	<section layout:fragment="content">
+	
+		<br/>
+		
+		<div class="container-fluid">
+			<h2>Index File</h2>
+			<h5>Status: </h5> <p th:text="${status}">...</p>
+			
+			<table class="table">
+				<thead>
+				<tr><th>Name Of Who</th></tr>
+				</thead>
+				<tbody>
+				<tr th:each="who : ${whos}">
+					<td th:text="${who}">who</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	
+	</section>	
+
+	<div th:replace="template :: footer">
+		<!-- Inherited from template -->
+	</div>
+
+</body>
+
+</html>

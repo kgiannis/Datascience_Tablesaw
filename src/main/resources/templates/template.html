@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<header>
+		<div class="card text-center">
+			<div class="card-header" id="headDiv">
+				<ul class="nav nav-pills card-header-pills">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="dbutils">DB Utils</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="showStatistics">Statistics</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="showSelections">Selections</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="showQueries">Queries</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<section layout:fragment="content">
+		<p>TPL --> Page content goes here</p>
+	</section>
+
+	<footer class="footer">
+		<br/>
+		<div class="container">
+			<span class="text-muted">Data Science with Tablesaw Library</span>
+		</div>
+	</footer>
+</body>
+</html>

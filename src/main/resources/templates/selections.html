@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<title>Selections</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href='/webjars/jquery-ui/1.12.1/jquery-ui.min.css' type="text/css" />
+	<link rel='stylesheet' href='/webjars/bootstrap/4.0.0-alpha.6-1/css/bootstrap.min.css' />
+	<link rel='stylesheet' href='/webjars/datatables/1.10.15/css/jquery.dataTables.css' />
+	<link rel='stylesheet' href='/webjars/select2/4.0.3/dist/css/select2.min.css' />
+	<link rel='stylesheet' href='/webjars/tether/1.4.0/css/tether.min.css' />
+	<link rel="stylesheet" href='/css/jquery-confirm.min.css' />
+	
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/webjars/datatables/1.10.15/js/jquery.dataTables.js"></script>
+	<script src="/webjars/select2/4.0.3/dist/js/select2.full.min.js"></script>
+	<script src="/webjars/tether/1.4.0/js/tether.min.js"></script>
+	<script src="/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-confirm.min.js"></script>
+</head>
+
+<body>
+
+	<div th:replace="template :: header">
+		<!-- Inherited from template -->
+	</div>
+	
+	
+	<section layout:fragment="content">
+	
+		<br/>
+		
+		<div class="container-fluid">
+			<div th:if="${status_danger != null}">
+				<div class="alert alert-danger" role="alert">
+					<strong><span th:text="${status_title}"></span></strong><span th:text="${status_body}"></span>
+				</div>
+			</div>
+			<div class="alert alert-warning" role="warning">
+					<strong>Warning!!</strong>  These are the sizes of the selections and not the selections as list
+				</div>
+		</div>
+		
+		<div class="container-fluid">
+		
+		<h4 align="center">Selections</h4>
+		
+			<div class="row">
+			
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-block">
+							<h5 class="card-title">Approval</h5>
+							<p class="card-text text-muted"><span th:text="ShortColumn" class="badge badge-info"></span></p>
+							<table class="table table-striped table-bordered table-responsive">
+								<thead>
+									<tr>
+										<th>Selection</th>
+										<th>Size</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Is Equal To [1]</td><td><span th:text="${appIsEqualTo}"></span></td></tr>
+									<tr><td>Is Greater Than [50]</td><td><span th:text="${appIsGreaterThan}"></span></td></tr>	
+									<tr><td>Is Less Than [50]</td><td><span th:text="${appIsLessThan}"></span></td></tr>	
+									<tr><td>Is Odd</td><td><span th:text="${appIsOdd}"></span></td></tr>
+									<tr><td>Is Zero</td><td><span th:text="${appIsZero}"></span></td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-block">
+							<h5 class="card-title">Date</h5>
+							<p class="card-text text-muted"><span th:text="DateColumn" class="badge badge-info"></span></p>
+							<table class="table table-striped table-bordered table-responsive">
+								<thead>
+									<tr>
+										<th>Selection</th>
+										<th>Size</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Is Monday</td><td><span th:text="${dayIsMonday}"></span></td></tr>
+									<tr><td>Is After Int [1]</td><td><span th:text="${dayIsAfterInt}"></span></td></tr>	
+									<tr><td>Is First Day Of Month</td><td><span th:text="${dayIsFirstDayOfMonth}"></span></td></tr>	
+									<tr><td>Is Missing</td><td><span th:text="${dayIsMissing}"></span></td></tr>
+									<tr><td>Is Not Missing</td><td><span th:text="${dayIsNotMissing}"></span></td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-block">
+							<h5 class="card-title">Who</h5>
+							<p class="card-text text-muted"><span th:text="CategoryColumn" class="badge badge-info"></span></p>
+							<table class="table table-striped table-bordered table-responsive">
+								<thead>
+									<tr>
+										<th>Selection</th>
+										<th>Size</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Equal To Ignoring Case [giannis]</td><td><span th:text="${whoIsGiannis}"></span></td></tr>
+									<tr><td>Ends With [is]</td><td><span th:text="${whoEndsWith}"></span></td></tr>	
+									<tr><td>Length Equal To [7]</td><td><span th:text="${whoLengthEqualTo}"></span></td></tr>	
+									<tr><td>Is Alpha Numeric</td><td><span th:text="${whoIsAlphaNumeric}"></span></td></tr>
+									<tr><td>Is Equal To [GIANNIS]</td><td><span th:text="${whoIsEqualTo}"></span></td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</section>
+	
+	
+	<div th:replace="template :: footer">
+		<!-- Inherited from template -->
+	</div>
+
+</body>
+</html>

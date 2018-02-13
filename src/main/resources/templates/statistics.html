@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<title>Statistics</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href='/webjars/jquery-ui/1.12.1/jquery-ui.min.css' type="text/css" />
+	<link rel='stylesheet' href='/webjars/bootstrap/4.0.0-alpha.6-1/css/bootstrap.min.css' />
+	<link rel='stylesheet' href='/webjars/datatables/1.10.15/css/jquery.dataTables.css' />
+	<link rel='stylesheet' href='/webjars/select2/4.0.3/dist/css/select2.min.css' />
+	<link rel='stylesheet' href='/webjars/tether/1.4.0/css/tether.min.css' />
+	<link rel="stylesheet" href='/css/jquery-confirm.min.css' />
+	
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/webjars/datatables/1.10.15/js/jquery.dataTables.js"></script>
+	<script src="/webjars/select2/4.0.3/dist/js/select2.full.min.js"></script>
+	<script src="/webjars/tether/1.4.0/js/tether.min.js"></script>
+	<script src="/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-confirm.min.js"></script>
+</head>
+
+<body>
+
+	<div th:replace="template :: header">
+		<!-- Inherited from template -->
+	</div>
+	
+	<section layout:fragment="content">
+		
+		<br/>
+		
+		<div class="container-fluid">
+			<div th:if="${status_danger != null}">
+				<div class="alert alert-danger" role="alert">
+					<strong><span th:text="${status_title}"></span></strong><span th:text="${status_body}"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+		<div class="card">
+			<div class="card-header">
+				Table Statistics - <strong>Size: </strong><span th:text="${tableSize}" class="badge badge-primary"></span>
+			</div>
+			<div class="card-block">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Shape</th>
+							<th>ColumnCount</th>
+							<th>Column Names</th>
+							<th>isEMPTY</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span th:text="${tableName}"></span></td>
+							<td><span th:text="${tableShape}"></span></td>
+							<td><span th:text="${tableColumnCount}"></span></td>
+							<td><span th:text="${tableColumnNames}"></span></td>
+							<td><span th:text="${tableIsEmpty}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		<br/>
+		
+		<div class="container-fluid">
+		<div class="card">
+			<div class="card-header">
+				Column: <strong>Approval</strong> - <span class="badge badge-info">ShortColumn</span>
+			</div>
+			<div class="card-block">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Min</th>
+							<th>Max</th>
+							<th>Median</th>
+							<th>Mean</th>
+							<th>Size</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span th:text="${colApprovalMin}"></span></td>
+							<td><span th:text="${colApprovalMax}"></span></td>
+							<td><span th:text="${colApprovalMedian}"></span></td>
+							<td><span th:text="${colApprovalMean}"></span></td>
+							<td><span th:text="${colApprovalSize}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		<br/>
+		
+		<div class="container-fluid">
+		<div class="card">
+			<div class="card-header">
+				Column: <strong>Date</strong> - <span class="badge badge-info">DateColumn</span>
+			</div>
+			<div class="card-block">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Count Unique</th>
+							<th>isFriday</th>
+							<th>isInAugust</th>
+							<th>isInQ3</th>
+							<th>isFirstDayOfMonth</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span th:text="${colDateUnique}"></span></td>
+							<td><span th:text="${colDateIsFriday}"></span></td>
+							<td><span th:text="${colDateIsAugust}"></span></td>
+							<td><span th:text="${colDateIsInQ3}"></span></td>
+							<td><span th:text="${colDateIsFirstDayOfMonth}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		<br/>
+		
+		<div class="container-fluid">
+		<div class="card">
+			<div class="card-header">
+				Column: <strong>Who</strong> - <span class="badge badge-info">CategoryColumn</span>
+			</div>
+			<div class="card-block">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Contains "giannis"</th>
+							<th>Unique</th>
+							<th>CountByCategory</th>
+							<th>IsAlpha</th>
+							<th>Last</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span th:text="${colWhoContains}"></span></td>
+							<td><span th:text="${colWhoUnique}"></span></td>
+							<td><span th:text="${colWhoCountByCategory}"></span></td>
+							<td><span th:text="${colWhoIsAlpha}"></span></td>
+							<td><span th:text="${colWhoLast}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+		
+	</section>
+	
+	<div th:replace="template :: footer">
+		<!-- Inherited from template -->
+	</div>
+
+</body>
+</html>

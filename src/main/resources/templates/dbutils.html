@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<title>DB Utils</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href='/webjars/jquery-ui/1.12.1/jquery-ui.min.css' type="text/css" />
+	<link rel='stylesheet' href='/webjars/bootstrap/4.0.0-alpha.6-1/css/bootstrap.min.css' />
+	<link rel='stylesheet' href='/webjars/datatables/1.10.15/css/jquery.dataTables.css' />
+	<link rel='stylesheet' href='/webjars/select2/4.0.3/dist/css/select2.min.css' />
+	<link rel='stylesheet' href='/webjars/tether/1.4.0/css/tether.min.css' />
+	<link rel="stylesheet" href='/css/jquery-confirm.min.css' />
+	
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/webjars/datatables/1.10.15/js/jquery.dataTables.js"></script>
+	<script src="/webjars/select2/4.0.3/dist/js/select2.full.min.js"></script>
+	<script src="/webjars/tether/1.4.0/js/tether.min.js"></script>
+	<script src="/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-confirm.min.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			$('#btnGenerate').on('click', function(event){
+				var rec2gen = $('#recordsToGenerate').val();
+				if(rec2gen == ""){
+					event.preventDefault();
+					alert('Give a number of records to generate...')
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	
+	<div th:replace="template :: header">
+		<!-- Inherited from template -->
+	</div>
+	
+	<section layout:fragment="content">
+	
+		<br/>
+		
+		<div class="container-fluid">
+			
+			<div th:if="${status_success != null}">
+				<div class="alert alert-success" role="alert">
+					<strong><span th:text="${status_title}"></span></strong><span th:text="${status_body}"></span>
+				</div>
+			</div>
+			
+			<div th:if="${status_danger != null}">
+				<div class="alert alert-danger" role="alert">
+					<strong><span th:text="${status_title}"></span></strong><span th:text="${status_body}"></span>
+				</div>
+			</div>
+		
+			<div class="row">
+			
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-block">
+							<h3 class="card-title">Generate Table Records</h3>
+							<p class="card-text">Input number of records to generate</p>
+							<form action="#" th:action="@{/generateRecords}" method="post">
+								<div class="form-group">
+									<input class="form-control" type="number" id="recordsToGenerate" name="recordsToGenerate" />
+									<br/>
+									<button type="submit" class="btn btn-primary" id="btnGenerate">Generate</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-block">
+							<h3 class="card-title">Truncate Table Records</h3>
+							<p class="card-text">Delete all records from table</p>
+							<form action="#" th:action="@{/deleteRecords}" method="get">
+								<div class="form-group">
+									<p>Total records: <span th:text="${totalRecords}" class="badge badge-pill badge-info"></span></p>
+									<button type="submit" class="btn btn-danger">Delete All</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	
+	<div th:replace="template :: footer">
+		<!-- Inherited from template -->
+	</div>
+	
+</body>
+</html>
