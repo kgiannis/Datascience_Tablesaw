@@ -6,11 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 import tech.tablesaw.api.ShortColumn;
 import tech.tablesaw.api.Table;
 
 public class DBTableUtils {
+	
+	/** Class Logger */
+	private static final Logger LOGGER = Logger.getLogger(DBTableUtils.class.getName());
 
 	public Connection connectToDB(String dbName){
 		String DB_URL = "jdbc:mysql://localhost:3306/" + dbName;
@@ -18,7 +22,7 @@ public class DBTableUtils {
 			Connection conn = DriverManager.getConnection(DB_URL, "root", "");
 			return conn;
 		} catch (SQLException e) {
-			System.out.println("Error while connecting to DB");
+			LOGGER.severe("Error while connecting to DB");
 			return null;
 		}
 	}
@@ -46,13 +50,13 @@ public class DBTableUtils {
 				preparedStmt.execute();
 			}
 		} catch (SQLException e) {
-			System.out.println("Error executing statement...");
+			LOGGER.severe("Error executing statement");
 			e.printStackTrace();
 		} finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				System.out.println("Error closing connection...");
+				LOGGER.severe("Error closing connection");
 				e.printStackTrace();
 			}
 		}
@@ -61,12 +65,10 @@ public class DBTableUtils {
 	
 	public void addRecordsToDB(Connection conn, int totalRecords){
 		long start = System.currentTimeMillis();
-		System.out.println("Generator started...: " + start);
 		
 		generateRandomRecords(conn, totalRecords);
 		
 		long end = System.currentTimeMillis();
-		System.out.println("Generator finished..: " + end);
 		
 		System.out.println("Record Generation Time Elapsed: " + Generator.formatElapsedTime(start, end));
 	}
